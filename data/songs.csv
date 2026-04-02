@@ -1,11 +1,19 @@
-id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
-1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18
-2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71
-3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10
-4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86
-5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05
-6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92
-7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89
-8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
-9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
-10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,popularity,release_decade,mood_tags
+1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18,78,2020,"uplifting,bright"
+2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71,65,2020,"focused,nostalgic"
+3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10,72,2010,"aggressive,driving"
+4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86,58,2020,"peaceful,nostalgic"
+5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05,85,2020,"euphoric,driving"
+6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92,45,2020,"dreamy,peaceful"
+7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89,52,2010,"nostalgic,warm"
+8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22,70,2020,"mysterious,retro"
+9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78,62,2020,"focused,calm"
+10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35,68,2020,"bright,nostalgic"
+11,Golden Hour,Sol Rosa,r&b,happy,0.72,104,0.88,0.80,0.30,74,2020,"warm,uplifting"
+12,Circuit Rush,DataWave,electronic,intense,0.95,140,0.55,0.91,0.04,80,2020,"euphoric,driving"
+13,Rainy Porch,Elm & Ash,country,relaxed,0.39,88,0.74,0.53,0.84,55,2010,"nostalgic,warm"
+14,Block Party,MC Fenix,hip-hop,hype,0.87,98,0.66,0.85,0.08,82,2020,"euphoric,aggressive"
+15,Iron Curtain,Abyssal Chord,metal,intense,0.97,168,0.22,0.61,0.06,60,2010,"aggressive,dark"
+16,Island Groove,Coral Drift,reggae,chill,0.55,82,0.78,0.70,0.62,58,2010,"peaceful,warm"
+17,Neon Blossom,K-Star,k-pop,happy,0.84,128,0.90,0.87,0.12,88,2020,"bright,euphoric"
+18,Desert Wind,Canyon Echo,folk,relaxed,0.33,76,0.70,0.45,0.90,42,2010,"peaceful,nostalgic"
