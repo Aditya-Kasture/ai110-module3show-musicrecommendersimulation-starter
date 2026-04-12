@@ -46,7 +46,7 @@ PROFILES = {
         "likes_acoustic": False, "scoring_mode": "energy_focused",
     },
     "Niche Folk Listener": {
-        # Only one folk song exists — tests catalog coverage failure
+        # Only one folk song exists - tests catalog coverage failure
         "genre": "folk", "mood": "relaxed", "energy": 0.32,
         "likes_acoustic": True, "target_popularity": 40,
         "preferred_decade": 2010, "scoring_mode": "mood_first",
@@ -60,7 +60,7 @@ PROFILES = {
     },
 }
 
-# Phase 4 Step 3 — weight-shift experiment
+# Phase 4 Step 3 - weight-shift experiment
 EXPERIMENT_PROFILES = {
     "Experiment A - Balanced (genre w=2.0, energy w=1.0)": {
         "genre": "pop", "mood": "happy", "energy": 0.80,

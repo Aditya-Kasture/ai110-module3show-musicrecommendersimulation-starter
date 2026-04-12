@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-This project simulates a content-based music recommendation system in Python. It reads a catalog of songs from a CSV file, compares each song's attributes against a user taste profile, assigns a weighted score, and returns the top-ranked suggestions with plain-language explanations. The goal is to demystify how real platforms like Spotify turn raw song data into personalized picks—and to surface the trade-offs and biases those systems inevitably carry.
+This project simulates a content-based music recommendation system in Python. It reads a catalog of songs from a CSV file, compares each song's attributes against a user taste profile, assigns a weighted score, and returns the top-ranked suggestions with plain-language explanations. The goal is to demystify how real platforms like Spotify turn raw song data into personalized picks, and to surface the trade-offs and biases those systems inevitably carry.
 
 ---
 
@@ -12,10 +12,10 @@ This project simulates a content-based music recommendation system in Python. It
 
 Modern platforms use two main strategies:
 
-- **Collaborative filtering** looks at what *other users* with similar taste enjoyed. If thousands of people who liked Song A also liked Song B, the system recommends Song B to you—without ever analyzing the music itself. Spotify's "Discover Weekly" relies heavily on this.
-- **Content-based filtering** looks at the *attributes of the songs themselves*—genre, energy, tempo, mood—and finds songs that are mathematically similar to what you already like. It doesn't need other users at all.
+- **Collaborative filtering** looks at what *other users* with similar taste enjoyed. If thousands of people who liked Song A also liked Song B, the system recommends Song B to you, without ever analyzing the music itself. Spotify's "Discover Weekly" relies heavily on this.
+- **Content-based filtering** looks at the *attributes of the songs themselves* (genre, energy, tempo, mood) and finds songs that are mathematically similar to what you already like. It doesn't need other users at all.
 
-VibeFinder uses **content-based filtering** because it works from day one with no listening history. The trade-off is that it can only surface songs similar to what the user explicitly told it they prefer—it never suggests genuinely surprising discoveries the way collaborative systems can.
+VibeFinder uses **content-based filtering** because it works from day one with no listening history. The trade-off is that it can only surface songs similar to what the user explicitly told it they prefer; it never suggests genuinely surprising discoveries the way collaborative systems can.
 
 ### Why We Need Both a Scoring Rule and a Ranking Rule
 
@@ -43,13 +43,13 @@ You need both because scoring a song and choosing the best songs are logically s
 
 A `UserProfile` stores:
 
-- `favorite_genre` / `favorite_mood` — preferred labels
-- `target_energy` — ideal energy level (0.0–1.0)
-- `likes_acoustic` — boolean bonus for acoustic songs
-- `target_popularity` — preference for mainstream vs. underground (0–100)
-- `preferred_decade` — era preference (0 = no preference)
-- `favorite_mood_tags` — comma-separated vibe tags (e.g., `"euphoric,nostalgic"`)
-- `scoring_mode` — selects a weight preset (`balanced`, `genre_first`, `mood_first`, `energy_focused`)
+- `favorite_genre` / `favorite_mood` - preferred labels
+- `target_energy` - ideal energy level (0.0-1.0)
+- `likes_acoustic` - boolean bonus for acoustic songs
+- `target_popularity` - preference for mainstream vs. underground (0-100)
+- `preferred_decade` - era preference (0 = no preference)
+- `favorite_mood_tags` - comma-separated vibe tags (e.g., `"euphoric,nostalgic"`)
+- `scoring_mode` - selects a weight preset (`balanced`, `genre_first`, `mood_first`, `energy_focused`)
 
 ### Algorithm Recipe (Scoring Rule)
 
@@ -230,7 +230,7 @@ Available scoring modes: balanced, genre_first, mood_first, energy_focused
 | Default pop/happy/0.8 (balanced) | Sunrise City and Gym Hero dominate because genre +2.0 is the largest single bonus available |
 | Switch to "energy_focused" mode | Gym Hero drops from #2 to #5 for the same pop/happy/0.8 user; Rooftop Lights (indie pop) rises to #2 because its energy 0.76 is closer than Gym Hero's 0.93 |
 | "Conflicting" profile (ambient + chill mood + energy 0.9) | Energy completely wins; the top 5 are all high-energy tracks from different genres, none are ambient or chill. The system cannot reconcile contradictory signals |
-| Niche folk user | Only one folk song exists (Desert Wind). After that the system falls back to mood matches across jazz, country, ambient—the results are reasonable but the catalog hole is obvious |
+| Niche folk user | Only one folk song exists (Desert Wind). After that the system falls back to mood matches across jazz, country, ambient; the results are reasonable but the catalog hole is obvious |
 | Diversity penalty 0.5 | Gym Hero's displayed score drops from 3.21 to 2.96 (pop genre already seen). With only 18 songs the top-5 list stays the same but scores shift |
 | Mood-Tag Hunter (nostalgic + euphoric) | Rooftop Lights jumps past Golden Hour because it carries both a "nostalgic" tag match and a "bright" tag partial match; Golden Hour has "warm,uplifting" which overlap less |
 
@@ -238,12 +238,12 @@ Available scoring modes: balanced, genre_first, mood_first, energy_focused
 
 ## Limitations and Risks
 
-- **Tiny catalog** — 18 songs is too small to surface genuinely surprising picks.
-- **Exact string matching** — "indie pop" and "pop" score 0 genre overlap.
-- **Filter bubble risk** — genre's high weight means the list is almost always one genre deep.
-- **No listening history** — the system treats every session identically.
-- **Contradictory profiles** — when energy and mood point in opposite directions, whichever has the higher weight in the chosen mode silently wins with no warning to the user.
-- **Western bias** — no classical, Afrobeats, Bollywood, or Latin genres in the catalog.
+- **Tiny catalog** - 18 songs is too small to surface genuinely surprising picks.
+- **Exact string matching** - "indie pop" and "pop" score 0 genre overlap.
+- **Filter bubble risk** - genre's high weight means the list is almost always one genre deep.
+- **No listening history** - the system treats every session identically.
+- **Contradictory profiles** - when energy and mood point in opposite directions, whichever has the higher weight in the chosen mode silently wins with no warning to the user.
+- **Western bias** - no classical, Afrobeats, Bollywood, or Latin genres in the catalog.
 
 ---
 
@@ -253,4 +253,4 @@ See [model_card.md](model_card.md) for the full model card and personal reflecti
 
 Building this system made the "magic" of Spotify feel surprisingly mechanical. What's striking is how much a simple rule *mostly works* for obvious profiles while completely failing at the edges. The weight-shift experiment was the clearest demonstration: just changing the energy weight from 1.0 to 3.0 pushed Gym Hero from #2 to #5 for the same user preferences. One number, quietly shaping every recommendation.
 
-The adversarial "conflicting" profile was the most revealing test. A user who wants chill mood but high energy gets five intense rock and hip-hop tracks—zero ambient, zero chill. The system has no way to negotiate between conflicting signals; it just adds up the numbers and the loudest wins.
+The adversarial "conflicting" profile was the most revealing test. A user who wants chill mood but high energy gets five intense rock and hip-hop tracks; zero ambient, zero chill. The system has no way to negotiate between conflicting signals; it just adds up the numbers and the loudest wins.

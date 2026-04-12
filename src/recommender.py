@@ -76,7 +76,7 @@ def _score_against_profile(
         score += pts
         reasons.append(f"mood match ({mood}, +{pts:.1f})")
 
-    # Energy similarity — continuous reward for closeness
+    # Energy similarity - continuous reward for closeness
     energy_sim = 1.0 - abs(energy - target_energy)
     pts = energy_sim * weights["energy"]
     score += pts
