@@ -144,6 +144,10 @@ Loaded 18 songs.
 Available scoring modes: balanced, genre_first, mood_first, energy_focused
 
 ==============================================================
+  STANDARD PROFILES
+==============================================================
+
+==============================================================
   High-Energy Pop
 ==============================================================
   #  Title           Genre        Score  Top Reason
@@ -169,12 +173,16 @@ Available scoring modes: balanced, genre_first, mood_first, energy_focused
   Deep Intense Rock
 ==============================================================
   #  Title         Genre         Score  Top Reason
----  ------------  ----------  -------  ---------------------------
+---  ------------  ----------  -------  -------------------------------
   1  Storm Runner  rock           4.98  genre match (rock, +4.0)
   2  Iron Curtain  metal          0.98  mood match (intense, +0.5)
   3  Circuit Rush  electronic     0.96  mood match (intense, +0.5)
   4  Gym Hero      pop            0.96  mood match (intense, +0.5)
-  5  Block Party   hip-hop        0.45  energy similarity (+0.28)
+  5  Block Party   hip-hop        0.45  energy similarity (0.95, +0.28)
+
+==============================================================
+  EDGE-CASE / ADVERSARIAL PROFILES
+==============================================================
 
 ==============================================================
   Conflicting: High Energy + Chill Mood
@@ -191,34 +199,76 @@ Available scoring modes: balanced, genre_first, mood_first, energy_focused
   Niche Folk Listener
 ==============================================================
   #  Title                Genre      Score  Top Reason
----  -------------------  -------  -------  ---------------------------
+---  -------------------  -------  -------  -------------------------------
   1  Desert Wind          folk        5.19  genre match (folk, +1.0)
   2  Coffee Shop Stories  jazz        4.14  mood match (relaxed, +3.0)
   3  Rainy Porch          country     4.12  mood match (relaxed, +3.0)
-  4  Spacewalk Thoughts   ambient     1.06  energy similarity (+0.48)
-  5  Island Groove        reggae      1.03  energy similarity (+0.39)
+  4  Spacewalk Thoughts   ambient     1.06  energy similarity (0.96, +0.48)
+  5  Island Groove        reggae      1.03  energy similarity (0.77, +0.39)
 
 ==============================================================
-  Weight Experiment A - Balanced (genre w=2.0, energy w=1.0)
+  Mood-Tag Hunter (nostalgic + euphoric)
 ==============================================================
   #  Title           Genre        Score  Top Reason
 ---  --------------  ---------  -------  ------------------------
-  1  Sunrise City    pop           4.20  genre match (pop, +2.0)
+  1  Sunrise City    pop           4.2   genre match (pop, +2.0)
+  2  Gym Hero        pop           3.31  genre match (pop, +2.0)
+  3  Rooftop Lights  indie pop     2.46  mood match (happy, +1.0)
+  4  Neon Blossom    k-pop         2.4   mood match (happy, +1.0)
+  5  Golden Hour     r&b           2.15  mood match (happy, +1.0)
+
+==============================================================
+  WEIGHT-SHIFT EXPERIMENT
+==============================================================
+
+==============================================================
+  Experiment A - Balanced (genre w=2.0, energy w=1.0)
+==============================================================
+  #  Title           Genre        Score  Top Reason
+---  --------------  ---------  -------  ------------------------
+  1  Sunrise City    pop           4.2   genre match (pop, +2.0)
   2  Gym Hero        pop           3.06  genre match (pop, +2.0)
   3  Rooftop Lights  indie pop     2.21  mood match (happy, +1.0)
   4  Golden Hour     r&b           2.15  mood match (happy, +1.0)
   5  Neon Blossom    k-pop         2.15  mood match (happy, +1.0)
 
 ==============================================================
-  Weight Experiment B - Energy-Focused (energy w=3.0, genre w=0.5)
+  Experiment B - Energy-Focused (energy w=3.0, genre w=0.5)
 ==============================================================
   #  Title           Genre        Score  Top Reason
 ---  --------------  ---------  -------  ------------------------
   1  Sunrise City    pop           4.08  genre match (pop, +0.5)
   2  Rooftop Lights  indie pop     3.54  mood match (happy, +0.5)
-  3  Neon Blossom    k-pop         3.50  mood match (happy, +0.5)
+  3  Neon Blossom    k-pop         3.5   mood match (happy, +0.5)
   4  Golden Hour     r&b           3.41  mood match (happy, +0.5)
   5  Gym Hero        pop           3.24  genre match (pop, +0.5)
+
+==============================================================
+  DIVERSITY PENALTY DEMO  (High-Energy Pop)
+==============================================================
+
+==============================================================
+  Without diversity penalty
+==============================================================
+  #  Title           Genre        Score  Top Reason
+---  --------------  ---------  -------  ------------------------
+  1  Sunrise City    pop           4.26  genre match (pop, +2.0)
+  2  Gym Hero        pop           3.21  genre match (pop, +2.0)
+  3  Neon Blossom    k-pop         2.27  mood match (happy, +1.0)
+  4  Rooftop Lights  indie pop     2.17  mood match (happy, +1.0)
+  5  Golden Hour     r&b           2.15  mood match (happy, +1.0)
+
+==============================================================
+  With diversity penalty (0.5)
+  [diversity penalty = 0.5 applied]
+==============================================================
+  #  Title           Genre        Score  Top Reason
+---  --------------  ---------  -------  ------------------------
+  1  Sunrise City    pop           4.26  genre match (pop, +2.0)
+  2  Gym Hero        pop           2.96  genre match (pop, +2.0)
+  3  Neon Blossom    k-pop         2.27  mood match (happy, +1.0)
+  4  Rooftop Lights  indie pop     2.17  mood match (happy, +1.0)
+  5  Golden Hour     r&b           2.15  mood match (happy, +1.0)
 ```
 
 ---
